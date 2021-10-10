@@ -1,0 +1,2 @@
+# computational_intelligence
+computational intelligence subject
