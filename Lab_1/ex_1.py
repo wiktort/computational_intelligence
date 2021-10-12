@@ -53,9 +53,11 @@ standard_deviation = statistics.stdev(vector_with_randoms)
 # print(average, min_value, max_value, standard_deviation)
 
 #g
-normalised_vector = vector_with_randoms / np.sqrt(np.sum(vector_with_randoms**2))
+normalised_vector = []
+for value in vector_with_randoms:
+    normalised_vector.append((value-min_value)/(max_value-min_value))
+
 index_of_max_in_base_vector = vector_with_randoms.argmax(0)
 max_value_in_normalised_vector = normalised_vector[index_of_max_in_base_vector]
 # print(normalised_vector, index_of_max_in_base_vector, max_value_in_normalised_vector)
-
 
