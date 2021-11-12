@@ -2,7 +2,7 @@ import csv
 import random
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import confusion_matrix
 
 classes = ['setosa', 'versicolor', 'virginica']
 full_set = []
