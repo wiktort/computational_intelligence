@@ -45,7 +45,7 @@ for column in full_set.columns:
     max_value = max(full_set[column])
     full_set[column] = full_set[column].apply(lambda value: (value-min_value)/(max_value-min_value))
 
-full_set.to_csv('diabates_prepared.csv')
+full_set.to_csv('diabetes_prepared.csv', index=False)
 
 
 
