@@ -15,31 +15,31 @@ from tensorflow.keras.optimizers import SGD
 from keras.preprocessing.image import ImageDataGenerator
 
 # create directories
-dataset_home = 'dataset_dogs_vs_cats/'
-subdirs = ['train/', 'test/']
-for subdir in subdirs:
-	# create label subdirectories
-	labeldirs = ['dogs/', 'cats/']
-	for labldir in labeldirs:
-		newdir = dataset_home + subdir + labldir
-		makedirs(newdir, exist_ok=True)
-# seed random number generator
-seed(1)
-# define ratio of pictures to use for validation
-val_ratio = 0.25
-# copy training dataset images into subdirectories
-src_directory = 'dogs-cats-mini/'
-for file in listdir(src_directory):
-	src = src_directory + '/' + file
-	dst_dir = 'train/'
-	if random() < val_ratio:
-		dst_dir = 'test/'
-	if file.startswith('cat'):
-		dst = dataset_home + dst_dir + 'cats/' + file
-		copyfile(src, dst)
-	elif file.startswith('dog'):
-		dst = dataset_home + dst_dir + 'dogs/' + file
-		copyfile(src, dst)
+# dataset_home = 'dataset_dogs_vs_cats/'
+# subdirs = ['train/', 'test/']
+# for subdir in subdirs:
+# 	# create label subdirectories
+# 	labeldirs = ['dogs/', 'cats/']
+# 	for labldir in labeldirs:
+# 		newdir = dataset_home + subdir + labldir
+# 		makedirs(newdir, exist_ok=True)
+# # seed random number generator
+# seed(1)
+# # define ratio of pictures to use for validation
+# val_ratio = 0.25
+# # copy training dataset images into subdirectories
+# src_directory = 'dogs-cats-mini/'
+# for file in listdir(src_directory):
+# 	src = src_directory + '/' + file
+# 	dst_dir = 'train/'
+# 	if random() < val_ratio:
+# 		dst_dir = 'test/'
+# 	if file.startswith('cat'):
+# 		dst = dataset_home + dst_dir + 'cats/' + file
+# 		copyfile(src, dst)
+# 	elif file.startswith('dog'):
+# 		dst = dataset_home + dst_dir + 'dogs/' + file
+# 		copyfile(src, dst)
 
 
 # define cnn model
@@ -74,7 +74,7 @@ def summarize_diagnostics(history):
 	pyplot.plot(history.history['val_accuracy'], color='orange', label='test')
 	# save plot to file
 	filename = sys.argv[0].split('/')[-1]
-	pyplot.savefig(filename + '_plot.png')
+	pyplot.savefig(filename + '_plot1.png')
 	pyplot.close()
 
 
@@ -86,7 +86,7 @@ def run_test_harness():
 	train_datagen = ImageDataGenerator(rescale=1.0 / 255.0, width_shift_range=0.1, height_shift_range=0.1, horizontal_flip=True)
 	test_datagen = ImageDataGenerator(rescale=1.0 / 255.0)
 	# prepare iterators
-	train_it = train_datagen.flow_from_directory('dataset_dogs_vs_cats/train/', mclass_mode='binary', batch_size=64, target_size=(200, 200))
+	train_it = train_datagen.flow_from_directory('dataset_dogs_vs_cats/train/', class_mode='binary', batch_size=64, target_size=(200, 200))
 	test_it = test_datagen.flow_from_directory('dataset_dogs_vs_cats/test/', class_mode='binary', batch_size=64, target_size=(200, 200))
 	# fit model
 	history = model.fit(train_it, steps_per_epoch=len(train_it), validation_data=test_it, validation_steps=len(test_it), epochs=50, verbose=0)
