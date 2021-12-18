@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 # b - tockenize
-with open('Angkor-Asias-ancient-Hydraulic-City.txt') as bbc:
+with open('articles/Angkor-Asias-ancient-Hydraulic-City.txt') as bbc:
     text = bbc.readlines()
     text = "".join(text)
     text = text.lower()
