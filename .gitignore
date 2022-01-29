@@ -131,3 +131,4 @@ dmypy.json
 #other
 *.pages
 dataset_dogs_vs_cats/*
+*/input/*
